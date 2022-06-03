@@ -92,9 +92,6 @@ public class Wrozki extends Agent implements AgentInterface{
             String nazwa;
             switch (Mapa.map[wayX][wayY].charAt(0)) {
                 case 'k':    // interakcja z kosmita
-                    nazwa = "l" + Symulacja.birthCount;
-                    Mapa.map[wayX][wayY] = nazwa;
-                    Symulacja.agents.add(new Ludzie(nazwa, wayX, wayY, 2));     //deklaracja czlowieka
                     for (int i = 0; i < Symulacja.agents.size(); i++) { // zmieniamy wartosci obiektu do usunięcia
                         if(Symulacja.agents.get(i).positionX == wayX && Symulacja.agents.get(i).positionY == wayY) {
                             Symulacja.agents.get(i).name = "0";
@@ -102,6 +99,9 @@ public class Wrozki extends Agent implements AgentInterface{
                             Symulacja.agents.get(i).positionY = -1;
                         }
                     }
+                    nazwa = "l" + Symulacja.birthCount;
+                    Mapa.map[wayX][wayY] = nazwa;
+                    Symulacja.agents.add(new Ludzie(nazwa, wayX, wayY, 2));     //deklaracja czlowieka
                     Symulacja.birthCount++;     //nowy czlowiek
                     Symulacja.deathCount++;     //smierc kosmity
                     Symulacja.initialKosmici--;
