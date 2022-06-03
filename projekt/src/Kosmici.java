@@ -93,7 +93,7 @@ public class Kosmici extends Agent implements AgentInterface{
                 case 'l':    // interakcja z czlowiekiem
                     nazwa = "k" + Symulacja.birthCount;     //tworzymy nazwe nowego kosmity
                     Mapa.map[wayX][wayY] = nazwa;
-                    Symulacja.agents.add(new Kosmici(nazwa, wayX, wayY, 0));
+                    Symulacja.agents.add(new Kosmici(nazwa, wayX, wayY, 0));     //deklaracja kosmity
                     for (int i = 0; i < Symulacja.agents.size(); i++) { // zmieniamy wartosci obiektu do usunięcia
                         if(Symulacja.agents.get(i).positionX == wayX && Symulacja.agents.get(i).positionY == wayY) {
                             Symulacja.agents.get(i).name = "0";
