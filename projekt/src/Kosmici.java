@@ -1,6 +1,6 @@
 import java.util.Collections;
 
-public class Kosmici extends Agent implements AgentInterface{
+public class Kosmici extends Agent {
 
     public Kosmici(String name, int positionX, int positionY, int health){
 

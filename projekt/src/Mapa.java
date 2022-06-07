@@ -137,7 +137,7 @@ public class Mapa {
                     j = -1;
                 }
             }
-            Symulacja.agents.add(new MiesozerneRosliny(nazwa, pozycjaX, pozycjaY, 2));
+            Symulacja.agents.add(new MiesozerneRosliny(nazwa, pozycjaX, pozycjaY, 8));
             map[pozycjaX][pozycjaY] = nazwa;
             Symulacja.birthCount++;
         }

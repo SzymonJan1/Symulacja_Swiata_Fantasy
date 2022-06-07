@@ -1,6 +1,6 @@
 import java.util.Collections;
 
-public class Wrozki extends Agent implements AgentInterface{
+public class Wrozki extends Agent {
 
     public Wrozki(String name, int positionX, int positionY, int health){
 
@@ -115,9 +115,9 @@ public class Wrozki extends Agent implements AgentInterface{
                     Symulacja.deathCount++;
                     Symulacja.initialWrozki--;
                     nazwa = Mapa.map[wayX][wayY];      //przypisujemy zmiennej "nazwa" nazwe rosliny
-                    for (int j = 0; j < Symulacja.agents.size(); j++) {     //roslina odzyskuje punkt zycia
+                    for (int j = 0; j < Symulacja.agents.size(); j++) {     //roslina odzyskuje punkty zycia
                         if (Symulacja.agents.get(j).name.equals(nazwa)) {
-                            if(Symulacja.agents.get(j).health == 1) Symulacja.agents.get(j).health++;
+                            if(Symulacja.agents.get(j).health != 8) Symulacja.agents.get(j).health = 8;
                         }
                     }
                     break;

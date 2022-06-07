@@ -1,6 +1,6 @@
 import java.util.Collections;
 
-public class MiesozerneRosliny extends Agent implements AgentInterface{
+public class MiesozerneRosliny extends Agent {
 
     public MiesozerneRosliny(String name, int positionX, int positionY, int health) {
 
@@ -108,7 +108,7 @@ public class MiesozerneRosliny extends Agent implements AgentInterface{
                     }
                     Symulacja.deathCount++;
                     Symulacja.initialWrozki--;
-                    if (health == 1) health++;  //odzyskuje zycie
+                    if (health != 8) health = 8;  //odzyskuje zycie
                     break;
                 case 'l': //spotyka czlowieka
                     nazwa = Mapa.map[wayX][wayY];      //przypisujemy zmiennej "nazwa" nazwe czlowieka
@@ -129,7 +129,7 @@ public class MiesozerneRosliny extends Agent implements AgentInterface{
                             }
                         }
                     }
-                    if (health == 1) health++;      //roslina odzyskuje zycie
+                    if (health != 8) health = 8;      //roslina odzyskuje zycie
                     break;
                 default:
                     health--;       //roslina traci punkt zycia

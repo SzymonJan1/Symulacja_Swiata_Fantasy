@@ -74,10 +74,10 @@ public class Tests {        //klasa do przeprowadzania testow jednostkowych inte
     public void WrozkiMeetMiesozerneRoslinyTest() {   //test interakcji, gdy wrozka spotyka miesozerna rosline
         MapToTests();
         Symulacja.agents.add(new Wrozki("w", 0, 0, 0));
-        Symulacja.agents.add(new MiesozerneRosliny("r", 1,1,2));
+        Symulacja.agents.add(new MiesozerneRosliny("r", 1,1,8));
         Mapa.map[0][0] = "w";
         Mapa.map[1][1] = "r";
-        expected.add(new MiesozerneRosliny("r", 1, 1, 2));
+        expected.add(new MiesozerneRosliny("r", 1, 1, 8));
         TestInteraction();
         assertEquals(expected.get(0).name, Symulacja.agents.get(0).name);
     }
@@ -155,11 +155,11 @@ public class Tests {        //klasa do przeprowadzania testow jednostkowych inte
     public void LudzieWithTwoLivesMeetMiesozerneRoslinyTest() {     //test interakcji, gdy czlowiek spotyka miesozerna roslina (czlowiek ma dwa zycia)
         MapToTests();
         Symulacja.agents.add(new Ludzie("l", 0, 0, 2));
-        Symulacja.agents.add(new MiesozerneRosliny("r", 1, 1, 2));
+        Symulacja.agents.add(new MiesozerneRosliny("r", 1, 1, 8));
         Mapa.map[0][0] = "l";
         Mapa.map[1][1] = "r";
         expected.add(new Ludzie("l", 0, 0, 1));
-        expected.add(new MiesozerneRosliny("r", 1, 1, 2));
+        expected.add(new MiesozerneRosliny("r", 1, 1, 8));
         System.out.println("Punkty zycia czlowieka przed interakcja: " + Symulacja.agents.get(0).health);
         TestInteraction();
         System.out.println("Punkty zycia czlowieka po interakcji: " + Symulacja.agents.get(0).health);
@@ -170,10 +170,10 @@ public class Tests {        //klasa do przeprowadzania testow jednostkowych inte
     public void LudzieWithOneLifeMeetMiesozerneRoslinyTest() {      //test interakcji, gdy czlowiek spotyka miesozerna roslina (czlowiek ma jedno zycie)
         MapToTests();
         Symulacja.agents.add(new Ludzie("l", 0, 0, 1));
-        Symulacja.agents.add(new MiesozerneRosliny("r", 1, 1, 2));
+        Symulacja.agents.add(new MiesozerneRosliny("r", 1, 1, 8));
         Mapa.map[0][0] = "l";
         Mapa.map[1][1] = "r";
-        expected.add(new MiesozerneRosliny("r", 1, 1, 2));
+        expected.add(new MiesozerneRosliny("r", 1, 1, 8));
         TestInteraction();
         assertEquals(expected.get(0).name, Symulacja.agents.get(0).name);
     }
@@ -185,7 +185,7 @@ public class Tests {        //klasa do przeprowadzania testow jednostkowych inte
         Symulacja.agents.add(new Wrozki("w", 1, 1, 0));
         Mapa.map[0][0] = "r";
         Mapa.map[1][1] = "w";
-        expected.add(new MiesozerneRosliny("r", 0, 0, 2));
+        expected.add(new MiesozerneRosliny("r", 0, 0, 8));
         System.out.println("Punkty życia miesozernej rosliny przed interakcja: " + Symulacja.agents.get(0).health);
         TestInteraction();
         System.out.println("Punkty życia miesozernej rosliny po interakcji: " + Symulacja.agents.get(0).health);
@@ -199,7 +199,7 @@ public class Tests {        //klasa do przeprowadzania testow jednostkowych inte
         Symulacja.agents.add(new Ludzie("l", 1, 1, 1));
         Mapa.map[0][0] = "r";
         Mapa.map[1][1] = "l";
-        expected.add(new MiesozerneRosliny("r", 0, 0, 2));
+        expected.add(new MiesozerneRosliny("r", 0, 0, 8));
         System.out.println("Punkty życia miesozernej rosliny przed interakcja: " + Symulacja.agents.get(0).health);
         TestInteraction();
         System.out.println("Punkty życia miesozernej rosliny po interakcji: " + Symulacja.agents.get(0).health);
@@ -209,9 +209,9 @@ public class Tests {        //klasa do przeprowadzania testow jednostkowych inte
     @Test
     public void MiesozerneRoslinyNoMeetTest() {        //test sytuacji, gdy miesozerna roslina nie spotyka wrozki, ani czlowieka
         MapToTests();
-        Symulacja.agents.add(new MiesozerneRosliny("r", 0, 0, 2));
+        Symulacja.agents.add(new MiesozerneRosliny("r", 0, 0, 8));
         Mapa.map[0][0] = "r";
-        expected.add(new MiesozerneRosliny("r", 0, 0, 1));
+        expected.add(new MiesozerneRosliny("r", 0, 0, 7));
         System.out.println("Punkty życia miesozernej rosliny przed tura: " + Symulacja.agents.get(0).health);
         TestInteraction();
         System.out.println("Punkty życia miesozernej rosliny po turze: " + Symulacja.agents.get(0).health);

@@ -1,7 +1,7 @@
 import java.util.Collections;
 import java.util.Random;
 
-public class Ludzie extends Agent implements AgentInterface{
+public class Ludzie extends Agent {
 
     public Ludzie(String name, int positionX, int positionY, int health) {
 
@@ -151,7 +151,7 @@ public class Ludzie extends Agent implements AgentInterface{
                         nazwa = Mapa.map[wayX][wayY];
                         for (int j = 0; j < Symulacja.agents.size(); j++) {     //roslina odzyskuje zycie po ataku na czlowieka
                             if (Symulacja.agents.get(j).name.equals(nazwa)) {
-                                if (Symulacja.agents.get(j).health == 1) Symulacja.agents.get(j).health++;
+                                if (Symulacja.agents.get(j).health != 8) Symulacja.agents.get(j).health = 8;
                             }
                         }
                         break;

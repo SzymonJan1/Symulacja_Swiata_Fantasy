@@ -1,7 +1,7 @@
 import java.util.Collections;
 import java.util.Random;
 
-public class Smoki extends Agent implements AgentInterface{
+public class Smoki extends Agent {
 
     public Smoki(String name, int positionX, int positionY, int health) {
 

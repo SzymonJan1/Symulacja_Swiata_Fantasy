@@ -1,9 +1,7 @@
-import javax.lang.model.type.NullType;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-abstract class Agent implements AgentInterface{
+abstract class Agent {
 
     int positionX, positionY;
     int health;
@@ -18,5 +16,13 @@ abstract class Agent implements AgentInterface{
         this.positionX = positionX;
         this.positionY = positionY;
         this.health = health;
+    }
+
+    void Shift_X_Y() {
+
+    }
+
+    void Interaction() {
+
     }
 }
