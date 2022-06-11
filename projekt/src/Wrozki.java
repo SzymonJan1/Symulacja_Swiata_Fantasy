@@ -2,13 +2,13 @@ import java.util.Collections;
 
 public class Wrozki extends Agent {
 
-    public Wrozki(String name, int positionX, int positionY, int health){
+    protected Wrozki(String name, int positionX, int positionY, int health){
 
         super( name, positionX, positionY, health);
     }
 
     @Override
-    public void Shift_X_Y() {
+    protected void Shift_X_Y() {
 
         if (positionX == 0 && positionY == 0) {  //lewy gorny rog mapy
             waysForX.add(0);
@@ -80,7 +80,7 @@ public class Wrozki extends Agent {
     }
 
     @Override
-    public void Interaction() {
+    protected void Interaction() {
 
         if(Mapa.map[wayX][wayY] == null) { //na wybranej pozycji nie ma innego agenta
             Mapa.map[wayX][wayY] = name;

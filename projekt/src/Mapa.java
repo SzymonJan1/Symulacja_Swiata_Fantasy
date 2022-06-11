@@ -3,11 +3,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Mapa {
-    static int x, y;
-    static String[][] map;
+    protected static int x, y;
+    protected static String[][] map;
 
     //generowanie mapy
-    void mapInitialization() {
+    protected void mapInitialization() {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Długość mapy: ");
@@ -18,7 +18,7 @@ public class Mapa {
     }
 
     //generowanie agentow z warunkow poczatkowych
-    void addAgents() {
+    protected void addAgents() {
         Random random = new Random();
         String nazwa;//zmienna tymczasowa odpowiadająca za tworzenie unikalnej nazwy dla każdego obiektu
         Scanner scanner = new Scanner(System.in);

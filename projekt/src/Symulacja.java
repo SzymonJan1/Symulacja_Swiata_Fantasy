@@ -5,11 +5,11 @@ import java.io.*;
 
 public class Symulacja {
 
-    static int iteration;
-    static int birthCount = 0, deathCount = 0, agentsCount; //narodzin potrzebny do tworzenia nazw kolejnych obiektow, licznik narodzin, licznik smierci
-    static int initialSmoki, initialLudzie, initialKosmici, initialWrozki, initialRosliny; //wartosci poczatkowe
-    static List<Agent> agents = new ArrayList<>();
-    BufferedWriter bw;
+    private static int iteration;
+    protected static int birthCount = 0, deathCount = 0, agentsCount; //narodzin potrzebny do tworzenia nazw kolejnych obiektow, licznik narodzin, licznik smierci
+    protected static int initialSmoki, initialLudzie, initialKosmici, initialWrozki, initialRosliny; //wartosci poczatkowe
+    protected static List<Agent> agents = new ArrayList<>();
+    private BufferedWriter bw;
     {
         try {
             bw = new BufferedWriter(new FileWriter("C:\\Users\\Szymon Wichrowski\\Desktop\\plik do projektu\\plik.txt"));
@@ -20,7 +20,7 @@ public class Symulacja {
     }
 
     //funkcja odpowiadajaca za dzialanie symulacji
-    void simulate() {
+    protected void simulate() {
 
         //drukowanie mapy z poczatkowymi populacjami
         System.out.println("Początek symulacji:");
