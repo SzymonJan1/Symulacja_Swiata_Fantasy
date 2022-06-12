@@ -6,13 +6,13 @@ import java.io.*;
 public class Symulacja {
 
     private static int iteration;
-    protected static int birthCount = 0, deathCount = 0, agentsCount; //narodzin potrzebny do tworzenia nazw kolejnych obiektow, licznik narodzin, licznik smierci
+    protected static int birthCount = 0, deathCount = 0, agentsCount; //licznik narodzin potrzebny do tworzenia nazw kolejnych obiektow, licznik smierci
     protected static int initialSmoki, initialLudzie, initialKosmici, initialWrozki, initialRosliny; //wartosci poczatkowe
     protected static List<Agent> agents = new ArrayList<>();
     private BufferedWriter bw;
     {
         try {
-            bw = new BufferedWriter(new FileWriter("C:\\Users\\Szymon Wichrowski\\Desktop\\plik do projektu\\plik.txt"));
+            bw = new BufferedWriter(new FileWriter("C:\\Users\\Szymon Wichrowski\\Desktop\\projekt\\pliki do projektu\\plik.txt"));
             bw.write("currentIteration - birthCount - deathCount - initialSmoki - initialLudzie - initialKosmici - initialWrozki - initialRosliny \n");
         } catch (IOException e) {
             e.printStackTrace();
@@ -24,12 +24,7 @@ public class Symulacja {
 
         //drukowanie mapy z poczatkowymi populacjami
         System.out.println("Początek symulacji:");
-        for (int k = 0; k < Mapa.y; k++) {
-            for (int l = 0; l < Mapa.x; l++) {
-                System.out.print(Mapa.map[l][k] + "    ");
-            }
-            System.out.println();
-        }
+        printMap();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Liczba iteracji: ");
         iteration = scanner.nextInt();      //uzytkownik wpisuje liczbe iteracji
@@ -52,12 +47,7 @@ public class Symulacja {
                     System.out.println("Koniec symulacji - liczba agentów przekroczyła liczbę pól na mapie.");
                     bool = true;
                     System.out.println("Mapa w momencie przerwania:");        //wyswietlanie mapy w momencie przerwania
-                    for (int k = 0; k < Mapa.y; k++) {
-                        for (int l = 0; l < Mapa.x; l++) {
-                            System.out.print(Mapa.map[l][k] + "       ");
-                        }
-                        System.out.println();
-                    }
+                    printMap();
                     break;
                 }
             }
@@ -85,19 +75,25 @@ public class Symulacja {
             }
 
             //usuwanie agentów z listy
-            for (int n = (agents.size()-1); n >= 0; n--) {
-                if(agents.get(n).name.equals("0")) agents.remove(n);
-            }
+            deleteAgents();
 
             //wyswietlanie mapy po kazdej iteracji
             System.out.println("Po " + currentIteration + " iteracji:");
-            for (int k = 0; k < Mapa.y; k++) {
-                for (int l = 0; l < Mapa.x; l++) {
-                    System.out.print(Mapa.map[l][k] + "       ");
-                }
-                System.out.println();
-            }
+            printMap();
+        }
+    }
+    protected static void deleteAgents() {
+        for (int n = (agents.size()-1); n >= 0; n--) {
+            if(agents.get(n).name.equals("0")) agents.remove(n);
+        }
+    }
 
+    protected static void printMap() {
+        for (int k = 0; k < Mapa.y; k++) {
+            for (int l = 0; l < Mapa.x; l++) {
+                System.out.print(Mapa.map[l][k] + "       ");
+            }
+            System.out.println();
         }
     }
 }
