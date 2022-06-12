@@ -56,7 +56,7 @@ public class Smoki extends Agent {
                         Symulacja.initialSmoki--;
                     }
                     break;
-                    
+
                 default:
                     health--;       //smok traci punkt zycia
                     if(health == 0) {

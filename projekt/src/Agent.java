@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static java.lang.System.exit;
+
 abstract class Agent {
 
     protected int positionX, positionY;
@@ -21,7 +23,12 @@ abstract class Agent {
 
     protected void Shift_X_Y() {
 
-        if (Mapa.x == 1) {
+        if ((Mapa.x == 1 && Mapa.y == 1) || Mapa.x < 1 || Mapa.y < 1) {
+            System.out.println("Dla podanych parametrów nie można przeprowadzić symulacji!");
+            exit(0);
+        }
+
+        else if (Mapa.x == 1 && Mapa.y > 1) {
             waysForX.add(0);
             if (positionY == 0) {
                 waysForY.add(1);
@@ -34,7 +41,7 @@ abstract class Agent {
                 waysForY.add(positionY + 1);
             }
         }
-        else if (Mapa.y == 1) {
+        else if (Mapa.y == 1 && Mapa.x > 1) {
             waysForY.add(0);
             if (positionX == 0) {
                 waysForX.add(1);
