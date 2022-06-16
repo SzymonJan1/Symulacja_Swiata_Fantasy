@@ -28,7 +28,7 @@ abstract class Agent {
             exit(0);
         }
 
-        else if (Mapa.x == 1 && Mapa.y > 1) {
+        else if (Mapa.x == 1) {
             waysForX.add(0);
             if (positionY == 0) {
                 waysForY.add(1);
@@ -41,7 +41,7 @@ abstract class Agent {
                 waysForY.add(positionY + 1);
             }
         }
-        else if (Mapa.y == 1 && Mapa.x > 1) {
+        else if (Mapa.y == 1) {
             waysForY.add(0);
             if (positionX == 0) {
                 waysForX.add(1);

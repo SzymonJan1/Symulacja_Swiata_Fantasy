@@ -13,7 +13,7 @@ public class Symulacja {
     {
         try {
             bw = new BufferedWriter(new FileWriter("C:\\Users\\Szymon Wichrowski\\Desktop\\projekt\\pliki do projektu\\plik.txt"));
-            bw.write("currentIteration - birthCount - deathCount - initialSmoki - initialLudzie - initialKosmici - initialWrozki - initialRosliny \n");
+            bw.write("currentIteration birthCount deathCount initialSmoki initialLudzie initialKosmici initialWrozki initialRosliny\n");
         } catch (IOException e) {
             e.printStackTrace();
         }

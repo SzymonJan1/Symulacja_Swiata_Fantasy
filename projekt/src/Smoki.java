@@ -40,7 +40,7 @@ public class Smoki extends Agent {
                     break;
 
                 case 's':       //spotyka innego smoka
-                    if(health>=3) {
+                    if(health>1) {
                     nazwa = "s" + Symulacja.birthCount;     //nazwa nowego smoka
                     Mapa.randomizePositions();
                         Symulacja.agents.add(new Smoki(nazwa, Mapa.pozycjaX, Mapa.pozycjaY, 5));     //deklaracja nowego smoka
