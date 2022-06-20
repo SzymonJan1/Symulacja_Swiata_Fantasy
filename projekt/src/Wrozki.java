@@ -8,7 +8,8 @@ public class Wrozki extends Agent {
     @Override
     protected void Interaction() {
 
-        if(Mapa.map[wayX][wayY] == null) { //na wybranej pozycji nie ma innego agenta
+        /**na wybranej pozycji nie ma innego agenta*/
+        if(Mapa.map[wayX][wayY] == null) {
             Mapa.map[wayX][wayY] = name;
             Mapa.map[positionX][positionY] = null;
             positionX = wayX;
@@ -18,32 +19,43 @@ public class Wrozki extends Agent {
             String nazwa;
             switch (Mapa.map[wayX][wayY].charAt(0)) {
 
-                case 'k':    // interakcja z kosmita
+                /** interakcja z kosmita*/
+                case 'k':
                     prepareForRemoval();
                     nazwa = "l" + Symulacja.birthCount;
                     Mapa.map[wayX][wayY] = nazwa;
-                    Symulacja.agents.add(new Ludzie(nazwa, wayX, wayY, 2));     //deklaracja czlowieka
-                    Symulacja.birthCount++;     //nowy czlowiek
-                    Symulacja.deathCount++;     //smierc kosmity
+                    /**deklaracja czlowieka*/
+                    Symulacja.agents.add(new Ludzie(nazwa, wayX, wayY, 2));
+                    /**nowy czlowiek*/
+                    Symulacja.birthCount++;
+                    /**smierc kosmity*/
+                    Symulacja.deathCount++;
                     Symulacja.initialKosmici--;
                     Symulacja.initialLudzie++;
                     break;
 
-                case 'r':    // interakcja z miesozerna roslina
-                    Mapa.map[positionX][positionY] = null;     //wrozka umiera
-                    name = "0";     // zmieniamy wartosci obiektu do usunięcia
+                /** interakcja z miesozerna roslina*/
+                case 'r':
+                    /**wrozka umiera*/
+                    Mapa.map[positionX][positionY] = null;
+                    /** zmieniamy wartosci obiektu do usuniecia*/
+                    name = "0";
                     Symulacja.deathCount++;
                     Symulacja.initialWrozki--;
-                    nazwa = Mapa.map[wayX][wayY];      //przypisujemy zmiennej "nazwa" nazwe rosliny
-                    for (int j = 0; j < Symulacja.agents.size(); j++) {     //roslina odzyskuje punkty zycia
+                    /**przypisujemy zmiennej "nazwa" nazwe rosliny*/
+                    nazwa = Mapa.map[wayX][wayY];
+                    /**roslina odzyskuje punkty zycia*/
+                    for (int j = 0; j < Symulacja.agents.size(); j++) {
                         if (Symulacja.agents.get(j).name.equals(nazwa)) {
                             if(Symulacja.agents.get(j).health != 8) Symulacja.agents.get(j).health = 8;
                         }
                     }
                     break;
 
-                case'l':    // interakcja z czlowiekiem
-                    nazwa = Mapa.map[wayX][wayY];      // czlowiek odzyskuje punkt zycia
+                /** interakcja z czlowiekiem*/
+                case'l':
+                    /** czlowiek odzyskuje punkt zycia*/
+                    nazwa = Mapa.map[wayX][wayY];
                     for (int j = 0; j < Symulacja.agents.size(); j++) {
                         if(Symulacja.agents.get(j).name.equals(nazwa)) {
                             if(Symulacja.agents.get(j).health == 1) Symulacja.agents.get(j).health++;
@@ -52,7 +64,8 @@ public class Wrozki extends Agent {
                     break;
             }
         }
-        waysForX.clear();       //czyscimy przetasowane listy
+        /**czyscimy przetasowane listy*/
+        waysForX.clear();
         waysForY.clear();
     }
 }

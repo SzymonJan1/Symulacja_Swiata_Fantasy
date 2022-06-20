@@ -8,11 +8,14 @@ public class MiesozerneRosliny extends Agent {
     @Override
     protected void Interaction() {
 
-        if (Mapa.map[wayX][wayY] == null) { //na wybranej pozycji nie ma innego agenta
-            health--;       //roslina traci punkt zycia
+        /**na wybranej pozycji nie ma innego agenta*/
+        if (Mapa.map[wayX][wayY] == null) {
+            /**roslina traci punkt zycia*/
+            health--;
             if (health == 0) {
                 Mapa.map[positionX][positionY] = null;
-                name = "0";     // zmieniamy wartosci obiektu do usunięcia
+                /** zmieniamy wartosci obiektu do usuniecia*/
+                name = "0";
                 Symulacja.deathCount++;
                 Symulacja.initialRosliny--;
             }
@@ -21,35 +24,46 @@ public class MiesozerneRosliny extends Agent {
             String nazwa;
             switch (Mapa.map[wayX][wayY].charAt(0)) {
 
-                case 'w':       //spotyka wrozke
+                /**spotyka wrozke*/
+                case 'w':
                     Mapa.map[wayX][wayY] = null;
                     prepareForRemoval();
                     Symulacja.deathCount++;
                     Symulacja.initialWrozki--;
-                    if (health != 8) health = 8;  //odzyskuje zycie
+                    /**odzyskuje zycie*/
+                    if (health != 8) health = 8;
                     break;
 
-                case 'l': //spotyka czlowieka
-                    nazwa = Mapa.map[wayX][wayY];      //przypisujemy zmiennej "nazwa" nazwe czlowieka
+                /**spotyka czlowieka*/
+                case 'l':
+                    /**przypisujemy zmiennej "nazwa" nazwe czlowieka*/
+                    nazwa = Mapa.map[wayX][wayY];
                     for (int j = 0; j < Symulacja.agents.size(); j++) {
                         if (Symulacja.agents.get(j).name.equals(nazwa)) {
-                            Symulacja.agents.get(j).health--;       //czlowiek traci punkt zyciea
-                            if (Symulacja.agents.get(j).health == 0) {      //czlowiek umiera
+                            /**czlowiek traci punkt zycia*/
+                            Symulacja.agents.get(j).health--;
+                            /**czlowiek umiera*/
+                            if (Symulacja.agents.get(j).health == 0) {
                                 Mapa.map[wayX][wayY] = null;
                                 prepareForRemoval();
-                                Symulacja.deathCount++;     //aktualizacja danych
+                                /**aktualizacja danych*/
+                                Symulacja.deathCount++;
                                 Symulacja.initialLudzie--;
                             }
                         }
                     }
-                    if (health != 8) health = 8;      //roslina odzyskuje zycie
+                    /**roslina odzyskuje zycie*/
+                    if (health != 8) health = 8;
                     break;
 
                 default:
-                    health--;       //roslina traci punkt zycia
-                    if(health == 0) {       //roslina umiera
+                    /**roslina traci punkt zycia*/
+                    health--;
+                    /**roslina umiera*/
+                    if(health == 0) {
                         Mapa.map[positionX][positionY] = null;
-                        name = "0";     // zmieniamy wartosci obiektu do usunięcia
+                        /** zmieniamy wartosci obiektu do usuniecia*/
+                        name = "0";
                         Symulacja.deathCount++;
                         Symulacja.initialRosliny--;
                         break;

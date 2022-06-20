@@ -8,33 +8,44 @@ public class Kosmici extends Agent {
     @Override
     protected void Interaction() {
 
-        if(Mapa.map[wayX][wayY] == null) { //na wybranej pozycji nie ma innego agenta
+        /**na wybranej pozycji nie ma innego agenta*/
+        if(Mapa.map[wayX][wayY] == null) {
             Mapa.map[wayX][wayY] = name;
             Mapa.map[positionX][positionY] = null;
             positionX = wayX;
             positionY = wayY;
         }
-        else { //na wybranej pozycji znajduje sie inny agent
+        /**na wybranej pozycji znajduje sie inny agent*/
+        else {
             String nazwa;
             switch(Mapa.map[wayX][wayY].charAt(0)) {
 
-                case 'l':    // interakcja z czlowiekiem
+                /** interakcja z czlowiekiem*/
+                case 'l':
                     prepareForRemoval();
-                    nazwa = "k" + Symulacja.birthCount;     //tworzymy nazwe nowego kosmity
+                    /**tworzymy nazwe nowego kosmity*/
+                    nazwa = "k" + Symulacja.birthCount;
                     Mapa.map[wayX][wayY] = nazwa;
-                    Symulacja.agents.add(new Kosmici(nazwa, wayX, wayY, 0));     //deklaracja kosmity
-                    Symulacja.birthCount++;     //aktualizacja danych
+                    /**deklaracja kosmity*/
+                    Symulacja.agents.add(new Kosmici(nazwa, wayX, wayY, 0));
+                    /**aktualizacja danych*/
+                    Symulacja.birthCount++;
                     Symulacja.deathCount++;
                     Symulacja.initialLudzie--;
                     Symulacja.initialKosmici++;
                     break;
 
-                case 'w':    // interakcja z wrozka
-                    nazwa = "l" + Symulacja.birthCount;     //nazwa nowego czlowieka
+                /** interakcja z wrozka*/
+                case 'w':
+                    /**nazwa nowego czlowieka*/
+                    nazwa = "l" + Symulacja.birthCount;
                     Mapa.map[positionX][positionY] = nazwa;
-                    Symulacja.agents.add(new Ludzie(nazwa, positionX, positionY, 2));   //deklaracja czlowieka
-                    name = "0";     // zmieniamy wartosci obiektu do usunięcia
-                    Symulacja.birthCount++;     //aktualizacja danych
+                    /**deklaracja czlowieka*/
+                    Symulacja.agents.add(new Ludzie(nazwa, positionX, positionY, 2));
+                    /** zmieniamy wartosci obiektu do usuniacia*/
+                    name = "0";
+                    /**aktualizacja danych*/
+                    Symulacja.birthCount++;
                     Symulacja.deathCount++;
                     Symulacja.initialLudzie++;
                     Symulacja.initialKosmici--;

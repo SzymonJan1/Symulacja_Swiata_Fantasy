@@ -4,14 +4,20 @@ import java.util.List;
 
 import static java.lang.System.exit;
 
-abstract class Agent {
+/**abstrakcyjna klasa, po ktorej dziedzicza wszystkie klasy poszczegolnych agentow*/
+public abstract class Agent {
 
+    /**aktualne wspolrzedne agenta*/
     protected int positionX, positionY;
     protected int health;
+    /**nazwa wlasna agenta, wyswietlana na mapie*/
     protected String name;
-    protected List<Integer> waysForX = new ArrayList<>(); //możliwe przesunięcia w osi x
-    protected List<Integer> waysForY = new ArrayList<>(); //możliwe przesunięcia w osi y
-    protected static int wayX, wayY; //przesunięcie w osi x lub y, wyliczane przed zmianą pozycji
+    /**mozliwe przesuniecia w osi x*/
+    protected List<Integer> waysForX = new ArrayList<>();
+    /**mozliwe przesuniecia w osi y*/
+    protected List<Integer> waysForY = new ArrayList<>();
+    /**przesuniecie w osi x lub y, wyliczane przed zmiana pozycji*/
+    protected static int wayX, wayY;
 
     protected Agent(String name, int positionX, int positionY, int health) {
 
@@ -21,13 +27,16 @@ abstract class Agent {
         this.health = health;
     }
 
+    /**wyznaczenie wspolrzednych pola, na ktore przemieszcza sie agent*/
     protected void Shift_X_Y() {
 
+        /**parametry mapy dla ktorych nie mozna przeprowadzic symulacji*/
         if ((Mapa.x == 1 && Mapa.y == 1) || Mapa.x < 1 || Mapa.y < 1) {
             System.out.println("Dla podanych parametrów nie można przeprowadzić symulacji!");
             exit(0);
         }
 
+        /**warunek, ze szerokosc mapy jest rowna 1*/
         else if (Mapa.x == 1) {
             waysForX.add(0);
             if (positionY == 0) {
@@ -41,6 +50,7 @@ abstract class Agent {
                 waysForY.add(positionY + 1);
             }
         }
+        /**warunek, ze dlugosc mapy jest rowna 1*/
         else if (Mapa.y == 1) {
             waysForY.add(0);
             if (positionX == 0) {
@@ -55,45 +65,53 @@ abstract class Agent {
             }
         }
         else {
-            if (positionX == 0 && positionY == 0) {  //lewy gorny rog mapy
+            /**lewy gorny rog mapy*/
+            if (positionX == 0 && positionY == 0) {
                 waysForX.add(0);
                 waysForX.add(1);
                 waysForY.add(0);
                 waysForY.add(1);
-            } else if (positionX == Mapa.x - 1 && positionY == 0) { //prawy gorny rog mapy
+                /**prawy gorny rog mapy*/
+            } else if (positionX == Mapa.x - 1 && positionY == 0) {
                 waysForX.add(Mapa.x - 1);
                 waysForX.add(Mapa.x - 2);
                 waysForY.add(0);
                 waysForY.add(1);
-            } else if (positionX == 0 && positionY == Mapa.y - 1) { //lewy dolny rog mapy
+                /**lewy dolny rog mapy*/
+            } else if (positionX == 0 && positionY == Mapa.y - 1) {
                 waysForX.add(0);
                 waysForX.add(1);
                 waysForY.add(Mapa.y - 1);
                 waysForY.add(Mapa.y - 2);
-            } else if (positionX == Mapa.x - 1 && positionY == Mapa.y - 1) { //prawy dolny rog mapy
+                /**prawy dolny rog mapy*/
+            } else if (positionX == Mapa.x - 1 && positionY == Mapa.y - 1) {
                 waysForX.add(Mapa.x - 1);
                 waysForX.add(Mapa.x - 2);
                 waysForY.add(Mapa.y - 1);
                 waysForY.add(Mapa.y - 2);
-            } else if (positionX > 0 && positionX < Mapa.x - 1 && positionY == 0) { //przy gornej krawedzi mapy
+                /**przy gornej krawedzi mapy*/
+            } else if (positionX > 0 && positionX < Mapa.x - 1 && positionY == 0) {
                 waysForX.add(positionX);
                 waysForX.add(positionX - 1);
                 waysForX.add(positionX + 1);
                 waysForY.add(0);
                 waysForY.add(1);
-            } else if (positionX > 0 && positionX < Mapa.x - 1 && positionY == Mapa.y - 1) { //przy dolnej krawedzi mapy
+                /**przy dolnej krawedzi mapy*/
+            } else if (positionX > 0 && positionX < Mapa.x - 1 && positionY == Mapa.y - 1) {
                 waysForX.add(positionX);
                 waysForX.add(positionX - 1);
                 waysForX.add(positionX + 1);
                 waysForY.add(Mapa.y - 1);
                 waysForY.add(Mapa.y - 2);
-            } else if (positionX == 0 && positionY > 0 && positionY < Mapa.y - 1) { // przy krawedzi z lewej strony mapy
+                /** przy krawedzi z lewej strony mapy*/
+            } else if (positionX == 0 && positionY > 0 && positionY < Mapa.y - 1) {
                 waysForX.add(0);
                 waysForX.add(1);
                 waysForY.add(positionY);
                 waysForY.add(positionY - 1);
                 waysForY.add(positionY + 1);
-            } else if (positionX == Mapa.x - 1 && positionY > 0 && positionY < Mapa.y - 1) { //przy krawedzi z prawej strony mapy
+                /**przy krawedzi z prawej strony mapy*/
+            } else if (positionX == Mapa.x - 1 && positionY > 0 && positionY < Mapa.y - 1) {
                 waysForX.add(Mapa.x - 1);
                 waysForX.add(Mapa.x - 2);
                 waysForY.add(positionY);
@@ -108,15 +126,16 @@ abstract class Agent {
                 waysForY.add(positionY + 1);
             }
         }
+        /**przetasowanie list wspolrzednych*/
         Collections.shuffle(waysForX);
         Collections.shuffle(waysForY);
-        // niech pierwsze elementy przetasowanych list beda nowymi wspolrzednymi
-
+        /** niech pierwsze elementy przetasowanych list beda nowymi wspolrzednymi*/
         wayX = waysForX.get(0);
         wayY = waysForY.get(0);
-
-        for (; ; ) {        //nieskonczona petla
-            if (wayX == positionX && wayY == positionY) {        //warunek, aby nie wylosowac tej samej pozycji
+        /**nieskonczona petla*/
+        for (; ; ) {
+            /**warunek, aby nie wylosowac tej samej pozycji*/
+            if (wayX == positionX && wayY == positionY) {
                 Collections.shuffle(waysForX);
                 Collections.shuffle(waysForY);
                 wayX = waysForX.get(0);
@@ -124,15 +143,16 @@ abstract class Agent {
             } else break;
         }
     }
-
+    /** zmieniamy wartosci obiektu do usuniecia*/
     protected void prepareForRemoval() {
-        for (int i = 0; i < Symulacja.agents.size(); i++) { // zmieniamy wartosci obiektu do usunięcia
+        for (int i = 0; i < Symulacja.agents.size(); i++) {
             if(Symulacja.agents.get(i).positionX == wayX && Symulacja.agents.get(i).positionY == wayY) {
                 Symulacja.agents.get(i).name = "0";
             }
         }
     }
 
+    /**interakcje miedzy agentami*/
     protected void Interaction() {
 
     }

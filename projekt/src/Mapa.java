@@ -3,11 +3,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Mapa {
+    /**rozmiary mapy*/
     protected static int x, y;
     protected static int pozycjaX, pozycjaY;
     protected static String[][] map;
 
-    //generowanie mapy
+    /**generowanie mapy*/
     protected void mapInitialization() {
 
         Scanner scanner = new Scanner(System.in);
@@ -17,14 +18,13 @@ public class Mapa {
         y = scanner.nextInt();
         map = new String[x][y];
     }
-
+    /**losowanie pozycji*/
     protected static void randomizePositions() {
-        //losowanie pozycji
         Random random = new Random();
         pozycjaX = random.nextInt(x);
         pozycjaY = random.nextInt(y);
 
-        //sprawdzanie czy podane koordynaty nie są już przypisane do jakiegos agenta
+        /**sprawdzanie czy podane koordynaty nie są już przypisane do jakiegos agenta*/
         for (int j = 0; j < Symulacja.agents.size(); j++) {
             if (Symulacja.agents.get(j).positionX == pozycjaX && Symulacja.agents.get(j).positionY == pozycjaY) {
                 pozycjaX = random.nextInt(x);
@@ -34,10 +34,10 @@ public class Mapa {
         }
     }
 
-    //generowanie agentow z warunkow poczatkowych
+    /**generowanie agentow z warunkow poczatkowych*/
     protected void addAgents() {
 
-        String nazwa;//zmienna tymczasowa odpowiadająca za tworzenie unikalnej nazwy dla każdego obiektu
+        String nazwa;   /**zmienna tymczasowa odpowiadajaca za tworzenie unikalnej nazwy dla kazdego obiektu*/
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ilość smoków (Nie może przekraczać " + x * y + "): ");
         Symulacja.initialSmoki = scanner.nextInt();
@@ -49,26 +49,26 @@ public class Mapa {
         Symulacja.initialKosmici = scanner.nextInt();
         System.out.println("Ilość roślin (Nie może przekraczać " + (x * y - Symulacja.initialSmoki - Symulacja.initialLudzie - Symulacja.initialWrozki - Symulacja.initialKosmici) + "): ");
         Symulacja.initialRosliny = scanner.nextInt();
-        //generowanie smokow
-        //
+        //generowanie smokow*/
+
         for (int i = 0; i < Symulacja.initialSmoki; i++) {
 
-            //tworzenie nazwa; dla smokow poczatek s i numerki kolejnych smoków
+            /**tworzenie nazwa; dla smokow poczatek s i numerki kolejnych smokow*/
             nazwa = "s";
             StringBuilder sB = new StringBuilder(nazwa);
             sB.append(Symulacja.birthCount);
             nazwa = sB.toString();
-            //koniec tworzenia nazwy
+            /**koniec tworzenia nazwy*/
            randomizePositions();
 
-            //tworzenie obiektu i dodanie jego reprezentacji na mapie
-            Symulacja.agents.add(new Smoki(nazwa, pozycjaX, pozycjaY, 5));
+            /**tworzenie obiektu i dodanie jego reprezentacji na mapie*/
+            Symulacja.agents.add(new Smoki(nazwa, pozycjaX, pozycjaY, 9));
             map[pozycjaX][pozycjaY] = nazwa;
             Symulacja.birthCount++;
 
         }
 
-        //generowanie ludzi
+        /**generowanie ludzi*/
         for (int i = 0; i < Symulacja.initialLudzie; i++) {
             nazwa = "l";
             StringBuilder sB = new StringBuilder(nazwa);
@@ -80,7 +80,7 @@ public class Mapa {
             Symulacja.birthCount++;
         }
 
-        //generowanie kosmitow
+        /**generowanie kosmitow*/
         for (int i = 0; i < Symulacja.initialKosmici; i++) {
             nazwa = "k";
             StringBuilder sB = new StringBuilder(nazwa);
@@ -92,7 +92,7 @@ public class Mapa {
             Symulacja.birthCount++;
         }
 
-        //generowanie wrozek
+        /**generowanie wrozek*/
         for (int i = 0; i < Symulacja.initialWrozki; i++) {
             nazwa = "w";
             StringBuilder sB = new StringBuilder(nazwa);
@@ -104,7 +104,7 @@ public class Mapa {
             Symulacja.birthCount++;
         }
 
-        //generowanie roslin
+        /**generowanie roslin*/
         for (int i = 0; i < Symulacja.initialRosliny; i++) {
             nazwa = "r";
             StringBuilder sB = new StringBuilder(nazwa);

@@ -9,16 +9,20 @@ public class Smoki extends Agent {
     @Override
     protected void Interaction() {
 
-        if(Mapa.map[wayX][wayY] == null) { //na wybranej pozycji nie ma innego agenta
-            health--;       //traci punkt zycia bo sie nie pozywil
+        /**na wybranej pozycji nie ma innego agenta*/
+        if(Mapa.map[wayX][wayY] == null) {
+            /**traci punkt zycia bo sie nie pozywil*/
+            health--;
             if(health == 0) {
                 Mapa.map[positionX][positionY] = null;
-                name = "0";     // zmieniamy wartosci obiektu do usunięcia
+                /** zmieniamy wartosci obiektu do usuniecia*/
+                name = "0";
                 Symulacja.deathCount++;
                 Symulacja.initialSmoki--;
             }
             else {
-                Mapa.map[wayX][wayY] = name;       //przechodzi na puste pole
+                /**przechodzi na puste pole*/
+                Mapa.map[wayX][wayY] = name;
                 Mapa.map[positionX][positionY] = null;
                 positionX = wayX;
                 positionY = wayY;
@@ -28,47 +32,64 @@ public class Smoki extends Agent {
             String nazwa;
             switch(Mapa.map[wayX][wayY].charAt(0)) {
 
-                case 'l':       // spotyka czlowieka
-                    Mapa.map[wayX][wayY] = name;   //wpisujemy nazwe smoka, w pole czlowieka
-                    Mapa.map[positionX][positionY] = null;     //stare pole smoka dajemy jako null
+                /** spotyka czlowieka*/
+                case 'l':
+                    /**wpisujemy nazwe smoka, w pole czlowieka*/
+                    Mapa.map[wayX][wayY] = name;
+                    /**stare pole smoka dajemy jako null*/
+                    Mapa.map[positionX][positionY] = null;
                     prepareForRemoval();
-                    positionX = wayX;       //zmieniamy wspolrzedne agenta
+                    /**zmieniamy wspolrzedne agenta*/
+                    positionX = wayX;
                     positionY = wayY;
-                    Symulacja.deathCount++;     //aktualizacja danych
+                    /**aktualizacja danych*/
+                    Symulacja.deathCount++;
                     Symulacja.initialLudzie--;
-                    if(health != 5) health = 5;     //smok odzyskuje punkty zycia
+                    /**smok odzyskuje punkty zycia*/
+                    if(health != 9) health = 9;
                     break;
 
-                case 's':       //spotyka innego smoka
+                /**spotyka innego smoka*/
+                case 's':
                     if(health>1) {
-                    nazwa = "s" + Symulacja.birthCount;     //nazwa nowego smoka
+                        /**nazwa nowego smoka*/
+                    nazwa = "s" + Symulacja.birthCount;
                     Mapa.randomizePositions();
-                        Symulacja.agents.add(new Smoki(nazwa, Mapa.pozycjaX, Mapa.pozycjaY, 5));     //deklaracja nowego smoka
+                        /**deklaracja nowego smoka*/
+                        Symulacja.agents.add(new Smoki(nazwa, Mapa.pozycjaX, Mapa.pozycjaY, 9));
                         Mapa.map[Mapa.pozycjaX][Mapa.pozycjaY] = nazwa;
-                        Symulacja.birthCount++;     //aktualizacja danych
+                        /**aktualizacja danych*/
+                        Symulacja.birthCount++;
                         Symulacja.initialSmoki++;
                     }
-                    health--;       //agent traci punkt zycia
+                    /**agent traci punkt zycia*/
+                    health--;
                     if(health == 0) {
                         Mapa.map[positionX][positionY] = null;
-                        name = "0";     // zmieniamy wartosci obiektu do usunięcia
-                        Symulacja.deathCount++;     //aktualizacja danych
+                        /** zmieniamy wartosci obiektu do usuniecia*/
+                        name = "0";
+                        /**aktualizacja danych*/
+                        Symulacja.deathCount++;
                         Symulacja.initialSmoki--;
                     }
                     break;
 
                 default:
-                    health--;       //smok traci punkt zycia
+                    /**smok traci punkt zycia*/
+                    health--;
                     if(health == 0) {
                         Mapa.map[positionX][positionY] = null;
-                        name = "0";     // zmieniamy wartosci obiektu do usunięcia
-                        Symulacja.deathCount++;     //aktualizacja danych
+                        /** zmieniamy wartosci obiektu do usuniecia*/
+                        name = "0";
+                        /**aktualizacja danych*/
+                        Symulacja.deathCount++;
                         Symulacja.initialSmoki--;
                         break;
                     }
             }
         }
-        waysForX.clear();       //czyscimy przetasowane listy
+        /**czyscimy przetasowane listy*/
+        waysForX.clear();
         waysForY.clear();
     }
 }
